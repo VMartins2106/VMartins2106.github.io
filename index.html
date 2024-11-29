@@ -16,6 +16,7 @@
     .container {
       max-width: 100%;
       margin: 0 auto;
+      display: none; /* Oculta o conteúdo até o áudio ser iniciado */
     }
 
     header {
@@ -89,6 +90,23 @@
       right: 10px;
     }
 
+    /* Estilo do player de áudio */
+    .audio-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .audio-container h2 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    audio {
+      width: 300px;
+      outline: none;
+    }
+
     /* Responsivo para telas menores */
     @media (max-width: 768px) {
       header h1 {
@@ -102,11 +120,29 @@
       button {
         padding: 8px;
       }
+
+      .audio-container h2 {
+        font-size: 18px;
+      }
+
+      audio {
+        width: 90%;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <!-- Player de Áudio Local -->
+  <div class="audio-container">
+    <h2>Ouça o Áudio para Continuar</h2>
+    <audio id="audio-player" controls>
+      <source src="audio.mp3" type="audio/mpeg">
+      Seu navegador não suporta o elemento de áudio.
+    </audio>
+  </div>
+
+  <!-- Conteúdo que será liberado -->
+  <div class="container" id="content-container">
     <header>
       <h1 id="main-title">Porque a Gabi tem que vir em casa hoje</h1>
     </header>
@@ -131,8 +167,9 @@
       </div>
     </main>
   </div>
+
   <script>
-    // JavaScript
+    // Controle de Slideshow
     let currentSlide = 0;
 
     function showSlide(index) {
@@ -150,6 +187,21 @@
 
     // Mostra o primeiro slide ao carregar a página
     showSlide(0);
+
+    // Reproduz a música após 7 segundos e libera o conteúdo
+    const audioPlayer = document.getElementById('audio-player');
+    const contentContainer = document.getElementById('content-container');
+
+    // Configura o áudio para começar a partir de 7 segundos
+    audioPlayer.currentTime = 7;
+
+    audioPlayer.addEventListener('play', () => {
+      // Libera o conteúdo quando o áudio começar a tocar
+      setTimeout(() => {
+        contentContainer.style.display = 'block';
+      }, 0000); // Atraso de 7 segundos para liberar o conteúdo
+    });
+
   </script>
 </body>
 </html>
