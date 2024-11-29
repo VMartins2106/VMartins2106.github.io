@@ -193,13 +193,13 @@
     const contentContainer = document.getElementById('content-container');
 
     // Configura o áudio para começar a partir de 7 segundos
-    audioPlayer.currentTime = 7;
+    audioPlayer.currentTime = 8;
 
     audioPlayer.addEventListener('play', () => {
       // Libera o conteúdo quando o áudio começar a tocar
       setTimeout(() => {
         contentContainer.style.display = 'block';
-      }, 0000); // Atraso de 7 segundos para liberar o conteúdo
+      }, 1000); // Atraso de 7 segundos para liberar o conteúdo
     });
 
   </script>
